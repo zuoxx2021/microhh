@@ -197,6 +197,12 @@ def create_nc_input(era5_1d, era5_1d_mean, cams_1d, df_tuv, domain, case_name):
             'emi_isop': emi_isop,
             'emi_no': emi_no,
         }
+
+        for name, value in tdep_chem.items():
+            value = np.asarray(value, dtype=float_type)
+            if np.any(~np.isfinite(value)):
+                logger.warning(f'Chemistry timedep {name} contains NaNs/Infs; replacing with zero.')
+            tdep_chem[name] = np.nan_to_num(value, nan=0.0, posinf=0.0, neginf=0.0)
     else:
         tdep_chem = None
 
