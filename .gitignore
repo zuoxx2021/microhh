@@ -6,3 +6,5 @@
 __pycache__/
 .include_runs/
 local_archives/
+cases/tata_steel_per/cross_to_nc.py
+cases/tata_steel_per/microhh_tools.py
